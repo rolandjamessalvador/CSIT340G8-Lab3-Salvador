@@ -1,26 +1,24 @@
-
 const Header = (props) => {
   return <h1>{props.course}</h1>
 }
 
-
 const Content = (props) => {
   return (
     <div>
-      <p>{props.part1} {props.exercises1}</p>
-      <p>{props.part2} {props.exercises2}</p>
-      <p>{props.part3} {props.exercises3}</p>
+      <p>{props.parts[0].name} {props.parts[0].exercises}</p>
+      <p>{props.parts[1].name} {props.parts[1].exercises}</p>
+      <p>{props.parts[2].name} {props.parts[2].exercises}</p>
     </div>
   )
 }
 
-
 const Total = (props) => {
   return (
-    <p>Number of exercises {props.total}</p>
+    <p>
+      Number of exercises {props.parts[0].exercises + props.parts[1].exercises + props.parts[2].exercises}
+    </p>
   )
 }
-
 
 const Footer = (props) => {
   return (
@@ -30,30 +28,19 @@ const Footer = (props) => {
   )
 }
 
-// Main App Component (Using individual variables as requested in 1.1)
 const App = () => {
-  const course = 'CSIT340 - Web Development'
-  
-  const part1 = 'CSIT340 Web Development'
-  const exercises1 = 3
-
-  const part2 = 'CSIT321 Data Structures and Algorithms'
-  const exercises2 = 3
-
-  const part3 = 'MATH201 Integral Calculus'
-  const exercises3 = 4
+  const course = 'Half Stack application development'
+  const parts = [
+    { name: 'Fundamentals of React', exercises: 10 },
+    { name: 'Using props to pass data', exercises: 7 },
+    { name: 'State of a component', exercises: 14 }
+  ]
 
   return (
     <div>
       <Header course={course} />
-      <Content 
-        part1={part1} exercises1={exercises1}
-        part2={part2} exercises2={exercises2}
-        part3={part3} exercises3={exercises3}
-      />
-      <Total total={exercises1 + exercises2 + exercises3} />
-      
-      {/* Required Footer with your info */}
+      <Content parts={parts} />
+      <Total parts={parts} />
       <Footer name="Roland James O. Salvador" courseCode="CSIT340" section="G8" />
     </div>
   )
